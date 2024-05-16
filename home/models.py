@@ -37,10 +37,21 @@ class Product(DefaultAbstract):
     description = models.CharField(max_length=255, verbose_name="Tavsif")
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, verbose_name="Kategoriya", related_name='category',
                                  blank=True, null=True)
+    discount = models.IntegerField(verbose_name="Chegirma", blank=True, null=True)
     quantity = models.IntegerField(verbose_name="Soni", default=1)
+    discounted_price = models.IntegerField(verbose_name="Chegirmadagi narxi", blank=True, null=True)
 
     def __str__(self):
         return self.name
+
+
+    def calculate_prive(self):
+        if self.discount:
+            self.discounted_price = self.price - (self.price / 100) * self.discount
+
+    def save(self, *args, **kwargs):
+        self.calculate_prive()
+        super(Product, self).save(*args, **kwargs)
 
     class Meta:
         verbose_name_plural = "Mahsulotlar"

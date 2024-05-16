@@ -21,7 +21,7 @@ class GalleryInline(admin.TabularInline):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('user', 'name', 'price', 'category', 'quantity')
+    list_display = ('user', 'name', 'price', 'category', 'discount', 'discounted_price', 'quantity')
     list_display_links = ('name', )
     list_filter = ('user', 'name', 'price', 'category')
     inlines = (GalleryInline, )
