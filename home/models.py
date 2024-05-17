@@ -58,7 +58,7 @@ class Product(DefaultAbstract):
 
 
 class Gallery(models.Model):
-    product = models.ForeignKey(Product, verbose_name='Mahsulot', on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, verbose_name='Mahsulot', on_delete=models.CASCADE, related_name='product_image')
     photo = models.ImageField(verbose_name="Rasm")
 
     def __str__(self):

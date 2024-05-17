@@ -3,7 +3,8 @@ from .models import Category, Product, Rating
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from user.permissions import IsSuperUser
-from .serializers import CategorySerializer, ProductSerializer
+from .serializers import CategorySerializer, ProductSerializer, ProductDetailSerializer
+
 
 # Create your views here.
 
@@ -28,3 +29,10 @@ class ShopPageAPI(APIView):
         serializer = ProductSerializer(products, many=True)
         return Response(serializer.data)
 
+
+class ProductPageAPI(APIView):
+
+    def get(self, request, pk):
+        product = Product.objects.filter(id=pk).first()
+        serializer = ProductDetailSerializer(product)
+        return Response(serializer.data)
