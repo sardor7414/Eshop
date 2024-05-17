@@ -5,7 +5,7 @@ from .models import *
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('title', 'get_image')
+    list_display = ('id', 'title', 'get_image')
 
     def get_image(self, obj):
         if obj.image:
@@ -21,7 +21,7 @@ class GalleryInline(admin.TabularInline):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('user', 'name', 'price', 'category', 'discount', 'discounted_price', 'quantity')
+    list_display = ('id', 'name', 'price', 'category', 'discount', 'discounted_price', 'quantity', 'user')
     list_display_links = ('name', )
     list_filter = ('user', 'name', 'price', 'category')
     inlines = (GalleryInline, )
@@ -34,4 +34,4 @@ class GalleryAdmin(admin.ModelAdmin):
 
 @admin.register(Rating)
 class RatingAdmin(admin.ModelAdmin):
-    list_display = ('product', 'rating', 'user')
+    list_display = ('id', 'product', 'rating', 'user')

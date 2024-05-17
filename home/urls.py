@@ -3,5 +3,6 @@ from .views import *
 
 
 urlpatterns = [
-    path('', index)
+    path('', HomePageAPI.as_view()),
+    path('shop/<int:pk>/', ShopPageAPI.as_view())
 ]
