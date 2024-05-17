@@ -82,3 +82,15 @@ class Rating(DefaultAbstract):
 
     class Meta:
         verbose_name_plural = "Baholar"
+
+
+class Reviews(DefaultAbstract):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name="Mahsulot", related_name='product_comment')
+    user = models.ForeignKey('user.User', on_delete=models.CASCADE, verbose_name="Foydalanuvchi")
+    comment = models.TextField()
+
+    def __str__(self):
+        return self.user.first_name
+
+    class Meta:
+        verbose_name_plural = "Izohlar"
