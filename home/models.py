@@ -94,3 +94,12 @@ class Reviews(DefaultAbstract):
 
     class Meta:
         verbose_name_plural = "Izohlar"
+
+
+class ContactUs(DefaultAbstract):
+    address = models.CharField(max_length=255, verbose_name="Manzil: ")
+    phone = models.CharField(max_length=50, verbose_name="Telefon raqam: ")
+    email = models.EmailField()
+
+    class Meta:
+        verbose_name_plural = "Kontaktlar"

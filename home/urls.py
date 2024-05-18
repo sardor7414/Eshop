@@ -6,4 +6,5 @@ urlpatterns = [
     path('', HomePageAPI.as_view()),
     path('shop/<int:pk>/', ShopPageAPI.as_view()),
     path('product/<int:pk>/', ProductPageAPI.as_view()),
+    path('contact-us/', ContactUsAPI.as_view())
 ]

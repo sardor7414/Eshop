@@ -39,3 +39,8 @@ class RatingAdmin(admin.ModelAdmin):
 @admin.register(Reviews)
 class ReviewAdmin(admin.ModelAdmin):
     list_display = ('product', 'user', 'comment')
+
+
+@admin.register(ContactUs)
+class ContactUsAdmin(admin.ModelAdmin):
+    list_display = ('address', 'phone', 'email')

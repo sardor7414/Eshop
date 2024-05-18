@@ -1,9 +1,9 @@
 from rest_framework.response import Response
-from .models import Category, Product, Rating
+from .models import Category, Product, Rating, ContactUs
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from user.permissions import IsSuperUser
-from .serializers import CategorySerializer, ProductSerializer, ProductDetailSerializer
+from .serializers import CategorySerializer, ProductSerializer, ProductDetailSerializer, ContactUsSerializer
 
 
 # Create your views here.
@@ -35,4 +35,12 @@ class ProductPageAPI(APIView):
     def get(self, request, pk):
         product = Product.objects.filter(id=pk).first()
         serializer = ProductDetailSerializer(product)
+        return Response(serializer.data)
+
+
+class ContactUsAPI(APIView):
+
+    def get(self, request):
+        contact = ContactUs.objects.all()
+        serializer = ContactUsSerializer(contact, many=True)
         return Response(serializer.data)
